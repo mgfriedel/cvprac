@@ -1,0 +1,1188 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cvprac.cvp_client &mdash; REST API client for communicating with an Arista Cloudvision(R) Portal node. develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'develop',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> REST API client for communicating with an Arista Cloudvision(R) Portal node.
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                develop
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Arista Cloudvision® Portal RESTful API Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#overview">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#getting-started">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#notes-for-api-class-usage">Notes for API Class Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#contact-questions">Contact/Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#license">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">cvprac</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">REST API client for communicating with an Arista Cloudvision(R) Portal node.</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cvprac.cvp_client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cvprac.cvp_client</h1><div class="highlight"><pre>
+<span></span><span class="c1">#</span>
+<span class="c1"># Copyright (c) 2017, Arista Networks, Inc.</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are</span>
+<span class="c1"># met:</span>
+<span class="c1">#</span>
+<span class="c1">#   Redistributions of source code must retain the above copyright notice,</span>
+<span class="c1">#   this list of conditions and the following disclaimer.</span>
+<span class="c1">#</span>
+<span class="c1">#   Redistributions in binary form must reproduce the above copyright</span>
+<span class="c1">#   notice, this list of conditions and the following disclaimer in the</span>
+<span class="c1">#   documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1">#   Neither the name of Arista Networks nor the names of its</span>
+<span class="c1">#   contributors may be used to endorse or promote products derived from</span>
+<span class="c1">#   this software without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</span>
+<span class="c1"># &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</span>
+<span class="c1"># LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</span>
+<span class="c1"># A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ARISTA NETWORKS</span>
+<span class="c1"># BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR</span>
+<span class="c1"># BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="c1"># WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE</span>
+<span class="c1"># OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN</span>
+<span class="c1"># IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="c1">#</span>
+<span class="sd">&#39;&#39;&#39; RESTful API Client class for Cloudvision(R) Portal</span>
+
+<span class="sd">This module provides a RESTful API client for Cloudvision(R) Portal (CVP)</span>
+<span class="sd">which can be used for building applications that work with Arista CVP.</span>
+
+<span class="sd">When the class is instantiated the logging is configured.  Either syslog,</span>
+<span class="sd">file logging, both, or none can be enabled.  If neither syslog nor filename is</span>
+<span class="sd">specified then no logging will be performed.</span>
+
+<span class="sd">This class supports creating a connection to a CVP node and then issuing</span>
+<span class="sd">subsequent GET and POST requests to CVP.  A GET or POST request will be</span>
+<span class="sd">automatically retried on the same node if the request receives a</span>
+<span class="sd">requests.exceptions.Timeout or ReadTimeout error.  A GET or POST request will</span>
+<span class="sd">be automatically retried on the same node if the request receives a</span>
+<span class="sd">CvpSessionLogOutError.  For this case a login will be performed before the</span>
+<span class="sd">request is retried.  For either case, the maximum number of times a request</span>
+<span class="sd">will be retried on the same node is specified by the class attribute</span>
+<span class="sd">NUM_RETRY_REQUESTS.</span>
+
+<span class="sd">If more than one CVP node is specified when creating a connection, and a GET</span>
+<span class="sd">or POST request that receives a requests.exceptions.ConnectionError,</span>
+<span class="sd">requests.exceptions.HTTPError, or a requests.exceptions.TooManyRedirects will</span>
+<span class="sd">be retried on the next CVP node in the list.  If a GET or POST request that</span>
+<span class="sd">receives a requests.exceptions.Timeout or CvpSessionLogOutError and the retries</span>
+<span class="sd">on the same node exceed NUM_RETRY_REQUESTS, then the request will be retried</span>
+<span class="sd">on the next node on the list.</span>
+
+<span class="sd">If any of the errors persists across all nodes then the GET or POST request</span>
+<span class="sd">will fail and the last error that occurred will be raised.</span>
+
+<span class="sd">The class provides connect, get, and post methods that allow the user to make</span>
+<span class="sd">direct RESTful API calls to CVP.</span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from cvprac.cvp_client import CvpClient</span>
+<span class="sd">    &gt;&gt;&gt; clnt = CvpClient()</span>
+<span class="sd">    &gt;&gt;&gt; clnt.connect([&#39;cvp1&#39;, &#39;cvp2&#39;, &#39;cvp3&#39;], &#39;cvp_user&#39;, &#39;cvp_word&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; result = clnt.get(&#39;/cvpInfo/getCvpInfo.do&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print result</span>
+<span class="sd">    {u&#39;version&#39;: u&#39;2016.1.0&#39;}</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+
+<span class="sd">The class provides a wrapper function around the CVP RESTful API operations.</span>
+<span class="sd">Each API method takes the RESTful API parameters as method parameters to the</span>
+<span class="sd">operation method.  The API class was added to the client class because the</span>
+<span class="sd">API functions are required when using the CVP RESTful API and placing them</span>
+<span class="sd">in this library avoids duplicating the calls in every application that uses</span>
+<span class="sd">this class.</span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from cvprac.cvp_client import CvpClient</span>
+<span class="sd">    &gt;&gt;&gt; clnt = CvpClient()</span>
+<span class="sd">    &gt;&gt;&gt; clnt.connect([&#39;cvp1&#39;, &#39;cvp2&#39;, &#39;cvp3&#39;], &#39;cvp_user&#39;, &#39;cvp_word&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; result = clnt.api.get_cvp_info()</span>
+<span class="sd">    &gt;&gt;&gt; print result</span>
+<span class="sd">    {u&#39;version&#39;: u&#39;2016.1.0&#39;}</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">logging.handlers</span> <span class="k">import</span> <span class="n">SysLogHandler</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">cycle</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="k">import</span> <span class="n">parse_version</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="k">import</span> <span class="ne">ConnectionError</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">Timeout</span><span class="p">,</span> \
+    <span class="n">ReadTimeout</span><span class="p">,</span> <span class="n">TooManyRedirects</span>
+
+<span class="kn">from</span> <span class="nn">cvprac.cvp_api</span> <span class="k">import</span> <span class="n">CvpApi</span>
+<span class="kn">from</span> <span class="nn">cvprac.cvp_client_errors</span> <span class="k">import</span> <span class="n">CvpApiError</span><span class="p">,</span> <span class="n">CvpLoginError</span><span class="p">,</span> \
+    <span class="n">CvpRequestError</span><span class="p">,</span> <span class="n">CvpSessionLogOutError</span>
+
+
+<div class="viewcode-block" id="CvpClient"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient">[docs]</a><span class="k">class</span> <span class="nc">CvpClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Use this class to create a persistent connection to CVP.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># pylint: disable=too-many-instance-attributes</span>
+    <span class="c1"># Maximum number of times to retry a get or post to the same</span>
+    <span class="c1"># CVP node.</span>
+    <span class="n">NUM_RETRY_REQUESTS</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">LATEST_API_VERSION</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+<div class="viewcode-block" id="CvpClient.__init__"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="s1">&#39;cvprac&#39;</span><span class="p">,</span> <span class="n">syslog</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Initialize the client and configure logging.  Either syslog, file</span>
+<span class="sd">            logging, both, or none can be enabled.  If neither syslog</span>
+<span class="sd">            nor filename is specified then no logging will be performed.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                logger (str): The name assigned to the logger.</span>
+<span class="sd">                syslog (bool): If True enable logging to syslog. Default is</span>
+<span class="sd">                    False.</span>
+<span class="sd">                filename (str): Log to the file specified by filename. Default</span>
+<span class="sd">                    is None.</span>
+<span class="sd">                log_level (str): Log level to use for logger. Default is INFO.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authdata</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cert</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cookies</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_cnt</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_pool</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix_short</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_cvaas</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tenant</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cvaas_token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_used_node</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Save proper headers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">log_level</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">syslog</span><span class="p">:</span>
+            <span class="c1"># Enables sending logging messages to the local syslog server.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">SysLogHandler</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="c1"># Enables sending logging messages to a file.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">syslog</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Not logging so use the null handler</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">())</span>
+
+        <span class="c1"># Instantiate the CvpApi class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">CvpApi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_used_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns the node that the last request was sent to regardless of</span>
+<span class="sd">            whether the request was successful or not.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                String identifying the node that the last request was sent to.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_used_node</span>
+
+<div class="viewcode-block" id="CvpClient.set_log_level"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.set_log_level">[docs]</a>    <span class="k">def</span> <span class="nf">set_log_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Set log level for logger. Defaults to INFO if no level passed in or</span>
+<span class="sd">            if an invalid level is passed in.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                log_level (str): Log level to use for logger. Default is INFO.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">log_level</span> <span class="o">=</span> <span class="n">log_level</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">log_level</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NOTSET&#39;</span><span class="p">,</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;WARNING&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CRITICAL&#39;</span><span class="p">]:</span>
+            <span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;INFO&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">log_level</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CvpClient.set_version"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.set_version">[docs]</a>    <span class="k">def</span> <span class="nf">set_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Set the CVP API version to be used when making api calls.</span>
+
+<span class="sd">            For CVP versions 2018.1.X and prior, use api version 1.0</span>
+<span class="sd">            For CVP versions 2018.2.X, use api version 2.0</span>
+<span class="sd">            For CVP versions 2019.0.0 through 2020.1.0, use api version 3.0</span>
+<span class="sd">            For CVP versions 2020.1.1 through 2020.2.X, use api version 4.0</span>
+<span class="sd">            For CVP versions 2020.3.0 and beyond, use api version 5.0</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                version (str): The CVP version in use.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Version </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+        <span class="c1"># Set apiversion to latest available API version for CVaaS</span>
+        <span class="c1"># Set apiversion to 5.0 for 2020.3.0 and beyond</span>
+        <span class="c1"># Set apiversion to 4.0 for 2020.1.1 through 2020.2.X</span>
+        <span class="c1"># Set apiversion to 3.0 for 2019.0.0 through 2020.1.0</span>
+        <span class="c1"># Set apiversion to 2.0 for 2018.2.X</span>
+        <span class="c1"># Set apiversion to 1.0 for 2018.1.X and prior</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cvaas</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting API version to </span><span class="si">%d</span><span class="s1"> for CVaaS&#39;</span><span class="p">,</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">LATEST_API_VERSION</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LATEST_API_VERSION</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">version_components</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">version_components</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">version_components</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Version found with less than 3 components.&#39;</span>
+                              <span class="s1">&#39; Appending 0. Updated Version String - </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                              <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">version_components</span><span class="p">))</span>
+            <span class="n">full_version</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">version_components</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parse_version</span><span class="p">(</span><span class="n">full_version</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">parse_version</span><span class="p">(</span><span class="s1">&#39;2020.3.0&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting API version to v5&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="mf">5.0</span>
+            <span class="k">elif</span> <span class="n">parse_version</span><span class="p">(</span><span class="n">full_version</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">parse_version</span><span class="p">(</span><span class="s1">&#39;2020.1.1&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting API version to v4&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="mf">4.0</span>
+            <span class="k">elif</span> <span class="n">parse_version</span><span class="p">(</span><span class="n">full_version</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">parse_version</span><span class="p">(</span><span class="s1">&#39;2019.0.0&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting API version to v3&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="mf">3.0</span>
+            <span class="k">elif</span> <span class="n">parse_version</span><span class="p">(</span><span class="n">full_version</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">parse_version</span><span class="p">(</span><span class="s1">&#39;2018.2.0&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting API version to v2&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="mf">2.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting API version to v1&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apiversion</span> <span class="o">=</span> <span class="mf">1.0</span></div>
+
+<div class="viewcode-block" id="CvpClient.connect"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                <span class="n">request_timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s1">&#39;https&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">is_cvaas</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cvaas_token</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Login to CVP and get a session ID and cookie.  Currently</span>
+<span class="sd">            certificates are not verified if the https protocol is specified. A</span>
+<span class="sd">            warning may be printed out from the requests module for this case.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                nodes (list): A list of hostname/IP addresses for CVP nodes</span>
+<span class="sd">                username (str): The CVP username</span>
+<span class="sd">                password (str): The CVP password</span>
+<span class="sd">                connect_timeout (int): The number of seconds to wait for a</span>
+<span class="sd">                    connection.</span>
+<span class="sd">                request_timeout (int): The default number of seconds to allow</span>
+<span class="sd">                    api requests to complete before timing out.</span>
+<span class="sd">                protocol (str): The protocol to use to connect to CVP.</span>
+<span class="sd">                    THIS PARAMETER IS NOT USED AND WILL BE DEPRECATED.</span>
+<span class="sd">                    ONLY INCLUDED TO NOT BREAK EXISTING CODE THAT HAS PROTOCOL</span>
+<span class="sd">                    SPECIFIED IN CONNECTION.</span>
+<span class="sd">                port (int): The TCP port of the endpoint for the connection.</span>
+<span class="sd">                    If this keyword is not specified, the default value is</span>
+<span class="sd">                    automatically determined by the transport type.</span>
+<span class="sd">                    (http=80, https=443)</span>
+<span class="sd">                cert (str or boolean): Path to a cert file used for a https</span>
+<span class="sd">                    connection or boolean with default False. If a cert is</span>
+<span class="sd">                    provided then the connection will not attempt to fallback</span>
+<span class="sd">                    to http. The False default sets the request to not verify</span>
+<span class="sd">                    the servers TLS certificate.</span>
+<span class="sd">                is_cvaas (boolean): Flag for enabling connection to CVaaS.</span>
+<span class="sd">                tenant: (string): Tenant/Org within CVaaS to connect to.</span>
+<span class="sd">                    Required if is_cvaas is enabled.</span>
+<span class="sd">                cvaas_token (string): API Token to use in place of UN/PW login</span>
+<span class="sd">                    for CVaaS.</span>
+<span class="sd">                api_token (string): API Token to use in place of UN/PW login</span>
+<span class="sd">                    for CVP 2020.3.0 and beyond.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                CvpLoginError: A CvpLoginError is raised if a connection</span>
+<span class="sd">                    could not be established to any of the nodes.</span>
+<span class="sd">                TypeError: A TypeError is raised if the nodes argument is not</span>
+<span class="sd">                    a list.</span>
+<span class="sd">                ValueError: A ValueError is raised if a port is not specified</span>
+<span class="sd">                    and the protocol is not http or https.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># pylint: disable=too-many-arguments</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;nodes argument must be a list&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cert</span> <span class="o">=</span> <span class="n">cert</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="n">nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_cnt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_pool</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authdata</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span> <span class="o">=</span> <span class="n">connect_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">request_timeout</span> <span class="o">=</span> <span class="n">request_timeout</span>
+        <span class="c1"># protocol is deprecated and not used.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_cvaas</span> <span class="o">=</span> <span class="n">is_cvaas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tenant</span> <span class="o">=</span> <span class="n">tenant</span>
+        <span class="k">if</span> <span class="n">cvaas_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;The cvaas_token parameter will be deprecated&#39;</span>
+                             <span class="s1">&#39; soon. Please start using the api_token&#39;</span>
+                             <span class="s1">&#39; parameter instead. It provides the same&#39;</span>
+                             <span class="s1">&#39; functionality that was previously provided&#39;</span>
+                             <span class="s1">&#39; by cvaas_token. The api_token parameter is&#39;</span>
+                             <span class="s1">&#39; a more general API token parameter because&#39;</span>
+                             <span class="s1">&#39; using the CVP REST API via token is also&#39;</span>
+                             <span class="s1">&#39; available for on premises CVP as of&#39;</span>
+                             <span class="s1">&#39; CVP version 2020.3.0&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cvaas_token</span> <span class="o">=</span> <span class="n">cvaas_token</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">cvaas_token</span>
+        <span class="k">if</span> <span class="n">api_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Using the new api_token parameter.&#39;</span>
+                             <span class="s1">&#39; This will override usage of the cvaas_token&#39;</span>
+                             <span class="s1">&#39; parameter if both are provided. This is because&#39;</span>
+                             <span class="s1">&#39; api_token and cvaas_token parameters are for&#39;</span>
+                             <span class="s1">&#39; the same use case and api_token is more&#39;</span>
+                             <span class="s1">&#39; generic&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">api_token</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cvaas_token</span> <span class="o">=</span> <span class="n">api_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_session</span><span class="p">(</span><span class="n">all_nodes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Verify that we can connect to at least one node</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CvpLoginError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">error_msg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient._create_session"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._create_session">[docs]</a>    <span class="k">def</span> <span class="nf">_create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_nodes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Login to CVP and get a session ID and user information.</span>
+<span class="sd">            If the all_nodes parameter is True then try creating a session</span>
+<span class="sd">            with each CVP node.  If False, then try creating a session with</span>
+<span class="sd">            each node except the one currently connected to.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_cnt</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">all_nodes</span> <span class="ow">and</span> <span class="n">num_nodes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">num_nodes</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">):</span>
+            <span class="n">host</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_pool</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%d</span><span class="s1">/web&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="ow">or</span> <span class="mi">443</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix_short</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%d</span><span class="s1">&#39;</span>
+                                     <span class="o">%</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="ow">or</span> <span class="mi">443</span><span class="p">))</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reset_session</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error_msg</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient._reset_session"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._reset_session">[docs]</a>    <span class="k">def</span> <span class="nf">_reset_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Get a new request session and try logging into the current</span>
+<span class="sd">            CVP node. If the login succeeded None will be returned and</span>
+<span class="sd">            self.session will be valid. If the login failed then an</span>
+<span class="sd">            exception error will be returned and self.session will</span>
+<span class="sd">            be set to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">return_error</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_login</span><span class="p">()</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="n">CvpApiError</span><span class="p">,</span> <span class="n">CvpRequestError</span><span class="p">,</span>
+                <span class="n">CvpSessionLogOutError</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">ReadTimeout</span><span class="p">,</span> <span class="n">Timeout</span><span class="p">,</span>
+                <span class="n">TooManyRedirects</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="c1"># Use outer scope var for return to handle</span>
+            <span class="c1"># Python 3 UnboundLocalError</span>
+            <span class="n">return_error</span> <span class="o">=</span> <span class="n">error</span>
+            <span class="c1"># Any error that occurs during login is a good reason not to use</span>
+            <span class="c1"># this CVP node.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">return_error</span></div>
+
+<div class="viewcode-block" id="CvpClient._is_good_response"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._is_good_response">[docs]</a>    <span class="k">def</span> <span class="nf">_is_good_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Check for errors in a response from a GET or POST request.</span>
+<span class="sd">            The response argument contains a response object from a GET or POST</span>
+<span class="sd">            request.  The prefix argument contains the prefix to put into the</span>
+<span class="sd">            error message.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;Unauthorized&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">:</span>
+                <span class="c1"># Check for &#39;Unauthorized&#39; User error because this is how</span>
+                <span class="c1"># CVP responds to a logged out users requests in 2018.x.</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: Request Error: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CvpApiError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;User is unauthorized&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+                <span class="c1"># Check for &#39;User is unauthorized&#39; response text because this</span>
+                <span class="c1"># is how CVP responds to a logged out users requests in 2019.x.</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: Request Error: User is unauthorized&#39;</span> <span class="o">%</span> <span class="n">prefix</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CvpApiError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: Request Error: </span><span class="si">%s</span><span class="s1"> - </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span>
+                                                      <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CvpRequestError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;LOG OUT MESSAGE&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: Request Error: session logged out&#39;</span> <span class="o">%</span> <span class="n">prefix</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CvpSessionLogOutError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">joutput</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">err_code_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finditem</span><span class="p">(</span><span class="n">joutput</span><span class="p">,</span> <span class="s1">&#39;errorCode&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">err_code_val</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;errorMessage&#39;</span> <span class="ow">in</span> <span class="n">joutput</span><span class="p">:</span>
+                <span class="n">err_msg</span> <span class="o">=</span> <span class="n">joutput</span><span class="p">[</span><span class="s1">&#39;errorMessage&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;errors&#39;</span> <span class="ow">in</span> <span class="n">joutput</span><span class="p">:</span>
+                    <span class="n">error_list</span> <span class="o">=</span> <span class="n">joutput</span><span class="p">[</span><span class="s1">&#39;errors&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">error_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">joutput</span><span class="p">[</span><span class="s1">&#39;errorCode&#39;</span><span class="p">]]</span>
+                <span class="c1"># Build the error message from all the errors.</span>
+                <span class="n">err_msg</span> <span class="o">=</span> <span class="n">error_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_list</span><span class="p">)):</span>
+                    <span class="n">err_msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">err_msg</span><span class="p">,</span> <span class="n">error_list</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: Request Error: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CvpApiError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient._check_response_status"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._check_response_status">[docs]</a>    <span class="k">def</span> <span class="nf">_check_response_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Check for status OK in a response from a GET or POST request.</span>
+<span class="sd">            The response argument contains a response object from a GET or POST</span>
+<span class="sd">            request.  The prefix argument contains the prefix to put into the</span>
+<span class="sd">            error message.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if request</span>
+<span class="sd">                response status is not OK.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: Request Error: </span><span class="si">%s</span><span class="s1"> - </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span>
+                                                  <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CvpRequestError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient._login"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._login">[docs]</a>    <span class="k">def</span> <span class="nf">_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a POST request to CVP login authentication.</span>
+<span class="sd">            An error can be raised from the post method call or the</span>
+<span class="sd">            _is_good_response method call.  Any errors raised would be a good</span>
+<span class="sd">            reason not to use this host.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum redirections</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get or post</span>
+<span class="sd">                    request failed and no session could be established to a</span>
+<span class="sd">                    CVP node.  Destroy the class and re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Remove any previous session id from the headers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;APP_SESSION_ID&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_headers_api_token</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cvaas</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_login_cvaas</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_login_on_prem</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CvpClient._login_on_prem"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._login_on_prem">[docs]</a>    <span class="k">def</span> <span class="nf">_login_on_prem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a POST request to CVP login authentication.</span>
+<span class="sd">            An error can be raised from the post method call or the</span>
+<span class="sd">            _is_good_response method call.  Any errors raised would be a good</span>
+<span class="sd">            reason not to use this host.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum redirections</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get or post</span>
+<span class="sd">                    request failed and no session could be established to a</span>
+<span class="sd">                    CVP node.  Destroy the class and re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix</span> <span class="o">+</span> <span class="s1">&#39;/login/authenticate.do&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span>
+                                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authdata</span><span class="p">),</span>
+                                     <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                     <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span>
+                                     <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_good_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;Authenticate: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cookies</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;APP_SESSION_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;sessionId&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="CvpClient._login_cvaas"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._login_cvaas">[docs]</a>    <span class="k">def</span> <span class="nf">_login_cvaas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a POST request to CVaaS login authentication.</span>
+<span class="sd">            An error can be raised from the post method call or the</span>
+<span class="sd">            _check_response_status method call.  Any errors raised would be</span>
+<span class="sd">            a good reason not to use this host.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum redirections</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get or post</span>
+<span class="sd">                    request failed and no session could be established to a</span>
+<span class="sd">                    CVP node.  Destroy the class and re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># For local CVaaS users no token is needed and the local username</span>
+        <span class="c1"># and password can be used with the below Login API.</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_prefix_short</span> <span class="o">+</span>
+               <span class="s1">&#39;/api/v1/oauth?provider=local&amp;next=false&#39;</span><span class="p">)</span>
+        <span class="n">cvaas_auth</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="p">,</span>
+                      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authdata</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">],</span>
+                      <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authdata</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span>
+                                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cvaas_auth</span><span class="p">),</span>
+                                     <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                     <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span>
+                                     <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_response_status</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;Authenticate: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cookies</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span></div>
+
+<div class="viewcode-block" id="CvpClient._set_headers_api_token"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._set_headers_api_token">[docs]</a>    <span class="k">def</span> <span class="nf">_set_headers_api_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Sets headers with API token instead of making a call to login API.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># If using an API token there is no need to run a Login API.</span>
+        <span class="c1"># Simply add the token into the headers or cookies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bearer </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_token</span></div>
+        <span class="c1"># Alternative to adding token to headers it can be added to</span>
+        <span class="c1"># cookies as shown below.</span>
+        <span class="c1"># self.cookies = {&#39;access_token&#39;: self.api_token}</span>
+
+<div class="viewcode-block" id="CvpClient.logout"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.logout">[docs]</a>    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/login/logout.do&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;success&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;User logged out.&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="s1">&#39;Error trying to logout </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">response</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient._make_request"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._make_request">[docs]</a>    <span class="k">def</span> <span class="nf">_make_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_type</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">files</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a GET, POST or DELETE request to CVP.  If the request call raises a</span>
+<span class="sd">            timeout or CvpSessionLogOutError then the request will be retried</span>
+<span class="sd">            on the same CVP node.  Otherwise the request will be tried on the</span>
+<span class="sd">            next CVP node.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                req_type (str): Either &#39;GET&#39;, &#39;POST&#39; or &#39;DELETE&#39;.</span>
+<span class="sd">                url (str): Portion of request URL that comes after the host.</span>
+<span class="sd">                timeout (int): Number of seconds the client will wait between</span>
+<span class="sd">                    bytes sent from the server.</span>
+<span class="sd">                data (dict): Dict of key/value pairs to pass as parameters into</span>
+<span class="sd">                    the request. Default is None.</span>
+<span class="sd">                files (dict): Dict of file name to files for upload. Currently</span>
+<span class="sd">                    only used for adding images to CVP. Default is None.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                The JSON response.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum re-directions</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get, post</span>
+<span class="sd">                    or delete request failed and no session could be</span>
+<span class="sd">                    established to a CVP node.  Destroy the class and</span>
+<span class="sd">                    re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># pylint: disable=too-many-branches</span>
+        <span class="c1"># pylint: disable=too-many-statements</span>
+        <span class="c1"># pylint: disable=too-many-arguments</span>
+        <span class="c1"># pylint: disable=raising-bad-type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No valid session to CVP node&#39;</span><span class="p">)</span>
+        <span class="c1"># Keep note of which node is handling this request.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_used_node</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;http[s]?://(.*):&#39;</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Retry the request for the number of nodes.</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">node_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_cnt</span><span class="p">):</span>
+            <span class="c1"># Set full URL based on current node</span>
+            <span class="k">if</span> <span class="s1">&#39;/api/&#39;</span> <span class="ow">in</span> <span class="n">url</span> <span class="ow">or</span> <span class="s1">&#39;/cvpservice/&#39;</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+                <span class="n">full_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix_short</span> <span class="o">+</span> <span class="n">url</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cvaas</span><span class="p">:</span>
+                <span class="c1"># For CVaaS use cvpservice instead of web or api</span>
+                <span class="n">full_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix_short</span> <span class="o">+</span> <span class="s1">&#39;/cvpservice&#39;</span> <span class="o">+</span> <span class="n">url</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">full_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_prefix</span> <span class="o">+</span> <span class="n">url</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">req_type</span><span class="p">,</span> <span class="n">full_url</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span>
+                                              <span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">CvpApiError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="c1"># If this is not an Unauthorized CvpApiError raise the error</span>
+                <span class="c1"># &#39;Unauthorized&#39; is for 2018.x</span>
+                <span class="c1"># &#39;User is unauthorized&#39; is for 2019.x</span>
+                <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Unauthorized&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">msg</span> <span class="ow">and</span>
+                        <span class="s1">&#39;User is unauthorized&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">msg</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="c1"># If this is the final CVP node raise error</span>
+                <span class="k">if</span> <span class="n">node_num</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_cnt</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="c1"># Create a new session to retry on another CVP node.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_create_session</span><span class="p">()</span>
+                <span class="c1"># Verify that we can connect to at least one node</span>
+                <span class="c1"># otherwise raise the last error</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="k">continue</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">TooManyRedirects</span><span class="p">,</span> <span class="n">ReadTimeout</span><span class="p">,</span>
+                    <span class="n">Timeout</span><span class="p">,</span> <span class="n">CvpSessionLogOutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="c1"># If this is the final CVP node raise error</span>
+                <span class="k">if</span> <span class="n">node_num</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_cnt</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="c1"># Create a new session to retry on another CVP node.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_create_session</span><span class="p">()</span>
+                <span class="c1"># Verify that we can connect to at least one node</span>
+                <span class="c1"># otherwise raise the last error</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="k">continue</span>
+            <span class="k">break</span>
+        <span class="n">resp_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">resp_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Error trying to decode request response </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                               <span class="n">error</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Attempt to return response text&#39;</span><span class="p">)</span>
+                <span class="n">resp_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Received no response for request </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                           <span class="n">req_type</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp_data</span></div>
+
+<div class="viewcode-block" id="CvpClient._send_request"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._send_request">[docs]</a>    <span class="k">def</span> <span class="nf">_send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_type</span><span class="p">,</span> <span class="n">full_url</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">files</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a GET, POST or DELETE request to CVP.  If the request call</span>
+<span class="sd">            raises a timeout or CvpSessionLogOutError then the request will be</span>
+<span class="sd">            retried on the same CVP node.  Otherwise the request will be tried</span>
+<span class="sd">            on the next CVP node.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                req_type (str): Either &#39;GET&#39;, &#39;POST&#39; or &#39;DELETE&#39;.</span>
+<span class="sd">                full_url (str): Portion of request URL that comes after the</span>
+<span class="sd">                    host.</span>
+<span class="sd">                timeout (int): Number of seconds the client will wait between</span>
+<span class="sd">                    bytes sent from the server.</span>
+<span class="sd">                data (dict): Dict of key/value pairs to pass as parameters into</span>
+<span class="sd">                    the request. Default is None.</span>
+<span class="sd">                files (dict): Dict of file name to files for upload. Currently</span>
+<span class="sd">                    only used for adding images to CVP. Default is None.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                The JSON response.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum re-directions</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get, post</span>
+<span class="sd">                    or delete request failed and no session could be</span>
+<span class="sd">                    established to a CVP node.  Destroy the class and</span>
+<span class="sd">                    re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># pylint: disable=too-many-branches</span>
+        <span class="c1"># pylint: disable=too-many-statements</span>
+        <span class="c1"># pylint: disable=too-many-arguments</span>
+        <span class="c1"># pylint: disable=raising-bad-type</span>
+        <span class="c1"># For get or post requests apply both the connect and read timeout.</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">req_try</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NUM_RETRY_REQUESTS</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">req_type</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">full_url</span><span class="p">,</span>
+                                                <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span>
+                                                <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                                                <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">req_type</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">files</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">full_url</span><span class="p">,</span>
+                                                     <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span>
+                                                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+                                                     <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                                     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                                                     <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fhs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+                        <span class="n">fhs</span><span class="p">[</span><span class="s1">&#39;Accept&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Accept&#39;</span><span class="p">]</span>
+                        <span class="n">fhs</span><span class="p">[</span><span class="s1">&#39;APP_SESSION_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;APP_SESSION_ID&#39;</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="s1">&#39;Authorization&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+                            <span class="n">fhs</span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span>
+                                <span class="s1">&#39;Authorization&#39;</span><span class="p">]</span>
+                        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">full_url</span><span class="p">,</span>
+                                                     <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span>
+                                                     <span class="n">headers</span><span class="o">=</span><span class="n">fhs</span><span class="p">,</span>
+                                                     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                                                     <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span>
+                                                     <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">req_type</span> <span class="o">==</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">:</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">full_url</span><span class="p">,</span>
+                                                   <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span>
+                                                   <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+                                                   <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                                   <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                                                   <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">TooManyRedirects</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="c1"># Any of these errors is a good reason to try another CVP node</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">error</span>
+            <span class="k">except</span> <span class="p">(</span><span class="n">ReadTimeout</span><span class="p">,</span> <span class="n">Timeout</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="c1"># If there was a timeout and this is not the final try,</span>
+                <span class="c1"># retry this request to the same node. If this is the final</span>
+                <span class="c1"># try raise the error so another CVP node can be tried</span>
+                <span class="k">if</span> <span class="n">req_try</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">NUM_RETRY_REQUESTS</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="k">continue</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_good_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span>
+                                       <span class="p">(</span><span class="n">req_type</span><span class="p">,</span> <span class="n">full_url</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">CvpSessionLogOutError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="c1"># Retry the request to the same node if there was a CVP session</span>
+                <span class="c1"># logout. Reset the session which will login. If a valid</span>
+                <span class="c1"># session comes back then clear the error so this request will</span>
+                <span class="c1"># be retried on the same node.</span>
+                <span class="k">if</span> <span class="n">req_try</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">NUM_RETRY_REQUESTS</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_reset_session</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">error</span>
+                    <span class="k">continue</span>
+            <span class="k">except</span> <span class="n">CvpApiError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Unauthorized&#39;</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">msg</span> <span class="ow">or</span>
+                        <span class="s1">&#39;User is unauthorized&#39;</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">msg</span><span class="p">):</span>
+                    <span class="c1"># Retry the request to the same node if there was an</span>
+                    <span class="c1"># Unauthorized User error because this is how CVP responds</span>
+                    <span class="c1"># to a logged out users requests in 2017.1.</span>
+                    <span class="c1"># Check for &#39;User is unauthorized&#39; in error because this is</span>
+                    <span class="c1"># how CVP responds to a logged out user requests in 2019.x.</span>
+                    <span class="c1"># Reset the session which will login. If a valid</span>
+                    <span class="c1"># session comes back then clear the error so this request</span>
+                    <span class="c1"># will be retried on the same node.</span>
+                    <span class="k">if</span> <span class="n">req_try</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">NUM_RETRY_REQUESTS</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">error</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_session</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="n">error</span>
+                        <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># pylint: disable=raising-bad-type</span>
+                    <span class="k">raise</span> <span class="n">error</span>
+            <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="CvpClient.get"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a GET request to CVP.  If the request call raises an error</span>
+<span class="sd">            or if the JSON response contains a CVP session related error then</span>
+<span class="sd">            retry the request on another CVP node.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                url (str): Portion of request URL that comes after the host.</span>
+<span class="sd">                timeout (int): Number of seconds the client will wait between</span>
+<span class="sd">                    bytes sent from the server.  Default value is 30 seconds.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                The JSON response.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum re-directions</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get, post</span>
+<span class="sd">                    or delete request failed and no session could be</span>
+<span class="sd">                    established to a CVP node.  Destroy the class and</span>
+<span class="sd">                    re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient.post"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a POST request to CVP.  If the request call raises an error</span>
+<span class="sd">            or if the JSON response contains a CVP session related error then</span>
+<span class="sd">            retry the request on another CVP node.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                url (str): Portion of request URL that comes after the host.</span>
+<span class="sd">                data (dict): Dict of key/value pairs to pass as parameters into</span>
+<span class="sd">                    the request. Default is None.</span>
+<span class="sd">                files (dict): Dict of file name to files for upload. Currently</span>
+<span class="sd">                    only used for adding images to CVP. Default is None.</span>
+<span class="sd">                timeout (int): Number of seconds the client will wait between</span>
+<span class="sd">                    bytes sent from the server.  Default value is 30 seconds.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                The JSON response.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum re-directions</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get, post</span>
+<span class="sd">                    or delete request failed and no session could be</span>
+<span class="sd">                    established to a CVP node.  Destroy the class and</span>
+<span class="sd">                    re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient.delete"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make a DELETE request to CVP.  If the request call raises an error</span>
+<span class="sd">            or if the JSON response contains a CVP session related error then</span>
+<span class="sd">            retry the request on another CVP node.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                url (str): Portion of request URL that comes after the host.</span>
+<span class="sd">                data (dict): Dict of key/value pairs to pass as parameters into</span>
+<span class="sd">                    the request. Default is None.</span>
+<span class="sd">                timeout (int): Number of seconds the client will wait between</span>
+<span class="sd">                    bytes sent from the server.  Default value is 30 seconds.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                The JSON response.</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ConnectionError: A ConnectionError is raised if there was a</span>
+<span class="sd">                    network problem (e.g. DNS failure, refused connection, etc)</span>
+<span class="sd">                CvpApiError: A CvpApiError is raised if there was a JSON error.</span>
+<span class="sd">                CvpRequestError: A CvpRequestError is raised if the request</span>
+<span class="sd">                    is not properly constructed.</span>
+<span class="sd">                CvpSessionLogOutError: A CvpSessionLogOutError is raised if</span>
+<span class="sd">                    response from server indicates session was logged out.</span>
+<span class="sd">                HTTPError: A HTTPError is raised if there was an invalid HTTP</span>
+<span class="sd">                    response.</span>
+<span class="sd">                ReadTimeout: A ReadTimeout is raised if there was a request</span>
+<span class="sd">                    timeout when reading from the connection.</span>
+<span class="sd">                Timeout: A Timeout is raised if there was a request timeout.</span>
+<span class="sd">                TooManyRedirects: A TooManyRedirects is raised if the request</span>
+<span class="sd">                    exceeds the configured number of maximum re-directions</span>
+<span class="sd">                ValueError: A ValueError is raised when there is no valid</span>
+<span class="sd">                    CVP session.  This occurs because the previous get, post</span>
+<span class="sd">                    or delete request failed and no session could be</span>
+<span class="sd">                    established to a CVP node.  Destroy the class and</span>
+<span class="sd">                    re-instantiate.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CvpClient._finditem"><a class="viewcode-back" href="../../cvprac.html#cvprac.cvp_client.CvpClient._finditem">[docs]</a>    <span class="k">def</span> <span class="nf">_finditem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Find a key in a a nested list/dict.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                obj (dict): Object to iterate to return value for provided key</span>
+<span class="sd">                key (str): The key to locate in dict and return the value for</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                Value of found key or None if not found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+                        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finditem</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="k">break</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finditem</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">break</span>
+        <span class="k">return</span> <span class="n">item</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Copyright 2020, Arista Netowrks, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

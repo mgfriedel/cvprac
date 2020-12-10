@@ -33,4 +33,5 @@
 '''
 
 __version__ = 'develop'
+__copyright__ = "Copyright 2020, Arista Netowrks, Inc."
 __author__ = 'Arista Networks, Inc.'

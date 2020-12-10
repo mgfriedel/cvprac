@@ -1,0 +1,594 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Arista Cloudvision® Portal RESTful API Client &mdash; REST API client for communicating with an Arista Cloudvision(R) Portal node. develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'develop',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cvprac" href="modules.html" />
+    <link rel="prev" title="Welcome to cvprac documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> REST API client for communicating with an Arista Cloudvision(R) Portal node.
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                develop
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Arista Cloudvision® Portal RESTful API Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#development-run-from-source">Development: Run from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-clone-the-cvprac-github-repo">Step 1: Clone the cvprac Github repo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-check-out-the-desired-version-or-branch">Step 2: Check out the desired version or branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-install-cvprac-using-pip-with-e-switch">Step 3: Install cvprac using Pip with -e switch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-install-cvprac-development-requirements">Step 4: Install cvprac development requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#connecting">Connecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cvp-on-premises">CVP On Premises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cvaas">CVaaS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cvp-version-handling">CVP Version Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#notes-for-api-class-usage">Notes for API Class Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#containers">Containers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#contact-questions">Contact/Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#license">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">cvprac</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API client for communicating with an Arista Cloudvision(R) Portal node.</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Arista Cloudvision® Portal RESTful API Client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="arista-cloudvisionreg-portal-restful-api-client">
+<h1>Arista Cloudvision® Portal RESTful API Client<a class="headerlink" href="#arista-cloudvisionreg-portal-restful-api-client" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://pypi.python.org/pypi/cvprac"><img alt="pypi_version_badge" src="https://img.shields.io/pypi/v/cvprac.svg" /></a>
+<a class="reference external" href="https://revproxy.arista.com/eosplus/ci/job/Pipeline_jerearista_test/cvprac-rb/develop"><img alt="System_test_Status" src="https://revproxy.arista.com/eosplus/ci/buildStatus/icon?job=Pipeline_jerearista_test/cvprac-rb/develop&amp;style=plastic" /></a></p>
+</div>
+<div class="section" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#development-run-from-source">Development: Run from Source</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#connecting">Connecting</a></li>
+<li><a class="reference internal" href="#cvp-on-premises">CVP On Premises</a></li>
+<li><a class="reference internal" href="#cvaas">CVaaS</a></li>
+<li><a class="reference internal" href="#cvp-version-handling">CVP Version Handling</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ol>
+</div>
+<div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>This module provides a RESTful API client for Cloudvision® Portal (CVP)
+which can be used for building applications that work with Arista CVP.</p>
+<p>When the class is instantiated the logging is configured. Either syslog,
+file logging, both, or none can be enabled. If neither syslog nor
+filename is specified then no logging will be performed.</p>
+<p>This class supports creating a connection to a CVP node and then issuing
+subsequent GET and POST requests to CVP. A GET or POST request will be
+automatically retried on the same node if the request receives a
+requests.exceptions.Timeout or ReadTimeout error. A GET or POST request
+will be automatically retried on the same node if the request receives a
+CvpSessionLogOutError. For this case a login will be performed before
+the request is retried. For either case, the maximum number of times a
+request will be retried on the same node is specified by the class
+attribute NUM_RETRY_REQUESTS.</p>
+<p>If more than one CVP node is specified when creating a connection, and a
+GET or POST request that receives a requests.exceptions.ConnectionError,
+requests.exceptions.HTTPError, or a requests.exceptions.TooManyRedirects
+will be retried on the next CVP node in the list. If a GET or POST
+request that receives a requests.exceptions.Timeout or
+CvpSessionLogOutError and the retries on the same node exceed
+NUM_RETRY_REQUESTS, then the request will be retried on the next node
+on the list.</p>
+<p>If any of the errors persists across all nodes then the GET or POST
+request will fail and the last error that occurred will be raised.</p>
+<p>The class provides connect, get, and post methods that allow the user to
+make RESTful API calls to CVP. See the example below using the get
+method.</p>
+<p>The class provides a wrapper function around the CVP RESTful API
+operations. Each API method takes the RESTful API parameters as method
+parameters to the operation method. The API class was added to the
+client class because the API functions are required when using the CVP
+RESTful API and placing them in this library avoids duplicating the
+calls in every application that uses this class. See the examples below
+using the API methods.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Python 2.7 or later</li>
+<li>Python logging module</li>
+<li>Python requests module version 1.0.0 or later</li>
+</ul>
+</div>
+</div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>The source code for cvprac is provided on Github at
+<a class="reference external" href="https://github.com/aristanetworks/cvprac">https://github.com/aristanetworks/cvprac</a>. All current development is
+done in the develop branch. Stable released versions are tagged in the
+master branch and uploaded to <a class="reference external" href="https://pypi.python.org">https://pypi.python.org</a>.</p>
+<p>If your platform has internet access you can use the Python Package
+manager to install cvprac.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>admin:~ admin$ sudo pip install cvprac
+</pre></div>
+</div>
+<p>You can upgrade cvprac</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>admin:~ admin$ sudo pip install --upgrade cvprac
+</pre></div>
+</div>
+<div class="section" id="development-run-from-source">
+<h2>Development: Run from Source<a class="headerlink" href="#development-run-from-source" title="Permalink to this headline">¶</a></h2>
+<p>We recommend running cvprac in a virtual environment. For more
+information, read this:
+<a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">http://docs.python-guide.org/en/latest/dev/virtualenvs/</a></p>
+<p>These instructions will help you install and run cvprac from source.
+This is useful if you plan on contributing or if you would always like
+to see the latest code in the develop branch. Note that these steps
+require the pip and git commands.</p>
+<div class="section" id="step-1-clone-the-cvprac-github-repo">
+<h3>Step 1: Clone the cvprac Github repo<a class="headerlink" href="#step-1-clone-the-cvprac-github-repo" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Go to a directory where you&#39;d like to keep the source
+admin:~ admin$ cd ~/projects
+admin:~ admin$ git clone https://github.com/aristanetworks/cvprac
+admin:~ admin$ cd cvprac
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-check-out-the-desired-version-or-branch">
+<h3>Step 2: Check out the desired version or branch<a class="headerlink" href="#step-2-check-out-the-desired-version-or-branch" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Go to a directory where you&#39;d like to keep the source
+admin:~ admin$ cd ~/projects/cvprac
+
+# To see a list of available versions or branches
+admin:~ admin$ git tag
+admin:~ admin$ git branch
+
+# Checkout the desired version of code
+admin:~ admin$ git checkout v1.0.3
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-install-cvprac-using-pip-with-e-switch">
+<h3>Step 3: Install cvprac using Pip with -e switch<a class="headerlink" href="#step-3-install-cvprac-using-pip-with-e-switch" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Go to a directory where you&#39;d like to keep the source
+admin:~ admin$ cd ~/projects/cvprac
+
+# Install
+admin:~ admin$ sudo pip install -e ~/projects/cvprac
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-install-cvprac-development-requirements">
+<h3>Step 4: Install cvprac development requirements<a class="headerlink" href="#step-4-install-cvprac-development-requirements" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Go to a directory where you&#39;d like to keep the source
+admin:~ admin$ pip install -r dev-requirements.txt
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Once the package has been installed you can run the following example to
+verify that everything has been installed properly.</p>
+<div class="section" id="connecting">
+<h2>Connecting<a class="headerlink" href="#connecting" title="Permalink to this headline">¶</a></h2>
+<p>Connecting to CVP will depend on your CVP setup. Several options are outlined below.</p>
+</div>
+<div class="section" id="cvp-on-premises">
+<h2>CVP On Premises<a class="headerlink" href="#cvp-on-premises" title="Permalink to this headline">¶</a></h2>
+<p>CVP On Premises is for users with CVP running on a local server or cluster of servers. This is the
+standard form of connection. Multiple examples below demonstrate connecting to CVP On Premises setups.</p>
+</div>
+<div class="section" id="cvaas">
+<h2>CVaaS<a class="headerlink" href="#cvaas" title="Permalink to this headline">¶</a></h2>
+<p>CVaaS is CloudVision as a Service. Users with CVaaS have two options for connecting to CVP with REST APIs.</p>
+<ol class="arabic">
+<li><p class="first">Local CVP users with username/password login.</p>
+<p>In order to use username/password login with CVaaS the user must be a user locally created within CVP.
+This option looks very similar to a connection to an On Premises CVP cluster with a couple other options
+(is_cvaas and tenant), required by CVaaS.</p>
+</li>
+<li><p class="first">Oauth users with REST API token.</p>
+<p>In the case where users authenticate with CVP using Oauth a REST API token is required to be generated and
+used for running REST APIs. In this case no login is necessary, but the API token must be provided to
+cvprac client with the is_cvaas parameter. In the case that the cvaas_token is used for REST APIs the
+username and password will be ignored and the tenant parameter is not needed.</p>
+</li>
+</ol>
+<p>Examples for both types of CVaaS connections are shown below.</p>
+</div>
+<div class="section" id="cvp-version-handling">
+<h2>CVP Version Handling<a class="headerlink" href="#cvp-version-handling" title="Permalink to this headline">¶</a></h2>
+<p>The CVP RESTful APIs often change between releases of CVP. Cvprac attempts to mask these API changes from
+the user via making appropriate API calls based on the CVP version while attempting to maintain return data and
+not changing function names when possible. This helps maintain backward compatibility for users when they upgrade CVP
+so that any custom automation/scripts will continue to work. In some cases maintaining return data requires
+additional API calls so there are cases where this comes with the cost of a slight performance hit. Users are free
+to access the clients get(), post() and delete() methods and make API calls directly if they want to avoid the
+potential time delay of some API functions. The current API version information handled by cvprac is shown below.</p>
+<blockquote>
+<div>Current latest API version is 4.0
+API version is set to latest available version for CVaaS
+API version is set to 4.0 for 2020.1.1 and beyond.
+API version is set to 3.0 for 2019.0.0 through 2020.1.0
+API version is set to 2.0 for 2018.2.X
+API version is set to 1.0 for 2018.1.X and prior</div></blockquote>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Example using CVP On Prem client get method directly:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cvprac.cvp_client</span> <span class="k">import</span> <span class="n">CvpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span> <span class="o">=</span> <span class="n">CvpClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span><span class="o">.</span><span class="n">connect</span><span class="p">([</span><span class="s1">&#39;cvp1&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp2&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp3&#39;</span><span class="p">],</span> <span class="s1">&#39;cvp_user&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp_word&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/cvpInfo/getCvpInfo.do&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">result</span>
+<span class="go">{u&#39;version&#39;: u&#39;2016.1.0&#39;}</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Same example as above using the API method:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cvprac.cvp_client</span> <span class="k">import</span> <span class="n">CvpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span> <span class="o">=</span> <span class="n">CvpClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span><span class="o">.</span><span class="n">connect</span><span class="p">([</span><span class="s1">&#39;cvp1&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp2&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp3&#39;</span><span class="p">],</span> <span class="s1">&#39;cvp_user&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp_word&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_cvp_info</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">result</span>
+<span class="go">{u&#39;version&#39;: u&#39;2016.1.0&#39;}</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Same example as above but connecting to CVaaS with a local CVP username/password:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cvprac.cvp_client</span> <span class="k">import</span> <span class="n">CvpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span> <span class="o">=</span> <span class="n">CvpClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cvaas&#39;</span><span class="p">],</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;cvp_local_user&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;cvp_local_word&#39;</span><span class="p">,</span> <span class="n">is_cvaas</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s1">&#39;user org/tenant&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_cvp_info</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">result</span>
+<span class="go">{u&#39;version&#39;: u&#39;cvaas&#39;}</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Same example as above but connecting to CVaaS with a token:
+Note that the username and password parameters are required by the connect function but will be ignored when using cvaas_token:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cvprac.cvp_client</span> <span class="k">import</span> <span class="n">CvpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span> <span class="o">=</span> <span class="n">CvpClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cvaas&#39;</span><span class="p">],</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">is_cvaas</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cvaas_token</span><span class="o">=</span><span class="s1">&#39;user token&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_cvp_info</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">result</span>
+<span class="go">{u&#39;version&#39;: u&#39;cvaas&#39;}</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Example using the API method to create a container, wait 5 seconds, then
+delete the container. Before running this example manually create a
+container named DC-1 on your CVP node.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cvprac.cvp_client</span> <span class="k">import</span> <span class="n">CvpClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span> <span class="o">=</span> <span class="n">CvpClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span><span class="o">.</span><span class="n">connect</span><span class="p">([</span><span class="s1">&#39;cvp1&#39;</span><span class="p">],</span> <span class="s1">&#39;cvp_user&#39;</span><span class="p">,</span> <span class="s1">&#39;cvp_word&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parent</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">search_topology</span><span class="p">(</span><span class="s1">&#39;DC-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">add_container</span><span class="p">(</span><span class="s1">&#39;TORs&#39;</span><span class="p">,</span> <span class="s1">&#39;DC-1&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="s1">&#39;containerList&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">child</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">search_topology</span><span class="p">(</span><span class="s1">&#39;TORs&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">clnt</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">delete_container</span><span class="p">(</span><span class="s1">&#39;TORs&#39;</span><span class="p">,</span> <span class="n">child</span><span class="p">[</span><span class="s1">&#39;containerList&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">],</span> <span class="s1">&#39;DC-1&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="s1">&#39;containerList&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">])</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="notes-for-api-class-usage">
+<h1>Notes for API Class Usage<a class="headerlink" href="#notes-for-api-class-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="containers">
+<h2>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+<p>With the API the containers are added for all cases. If you add the
+container to the original root container ‘Tenant’ then you have to do a
+refresh from the GUI to see the container after it is added or deleted.
+If the root container has been renamed or the parent container is not
+the root container then an add or delete will update the GUI without
+requiring a manual refresh.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<p>The cvprac module provides system tests. To run the system tests, you
+will need to update the <code class="docutils literal"><span class="pre">cvp_nodes.yaml</span></code> file found in test/fixtures.</p>
+<p>Requirements for running the system tests:</p>
+<ul class="simple">
+<li>Need one CVP node for test with a test user account. Create the same
+account on the switch used for testing. The user account information
+follows:</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="p">:</span> <span class="n">CvpRacTest</span>
+<span class="n">password</span><span class="p">:</span> <span class="n">AristaInnovates</span>
+
+<span class="n">If</span> <span class="n">switch</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">correct</span> <span class="n">username</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">password</span> <span class="n">then</span> <span class="n">the</span> <span class="n">tests</span> <span class="n">that</span>
+<span class="n">execute</span> <span class="n">tasks</span> <span class="n">will</span> <span class="n">fail</span> <span class="k">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">error</span><span class="p">:</span>
+
+<span class="ne">AssertionError</span><span class="p">:</span> <span class="n">Execution</span> <span class="k">for</span> <span class="n">task</span> <span class="nb">id</span> <span class="mi">220</span> <span class="n">failed</span>
+
+<span class="ow">and</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">test</span> <span class="n">log</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">error</span><span class="p">:</span>
+
+<span class="n">Failure</span> <span class="n">response</span> <span class="n">received</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">netElement</span> <span class="p">:</span> <span class="s1">&#39; Unauthorized User &#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Test has dedicated access to the CVP node.</li>
+<li>CVP node contains at least one device in a container.</li>
+<li>Container or device has at least one configlet applied.</li>
+</ul>
+<p>To run the system tests:</p>
+<ul class="simple">
+<li>run <code class="docutils literal"><span class="pre">make</span> <span class="pre">tests</span></code> from the root of the cvprac source folder.</li>
+</ul>
+</div>
+<div class="section" id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>Contributing pull requests are gladly welcomed for this repository.
+Please note that all contributions that modify the library behavior
+require corresponding test cases otherwise the pull request will be
+rejected.</p>
+</div>
+<div class="section" id="contact-questions">
+<h1>Contact/Questions<a class="headerlink" href="#contact-questions" title="Permalink to this headline">¶</a></h1>
+<p>Cvprac is developed by Arista EOS+ CS and supported by the Arista EOS+ community. Support for the code is provided on a best effort basis by the Arista EOS+ CS team and the community. You can contact the team that develops these modules by sending an email to <a class="reference external" href="mailto:eosplus-dev&#37;&#52;&#48;arista&#46;com">eosplus-dev<span>&#64;</span>arista<span>&#46;</span>com</a>.</p>
+<p>For customers that are looking for a premium level of support, please contact your local account team or email <a class="reference external" href="mailto:eosplus&#37;&#52;&#48;arista&#46;com">eosplus<span>&#64;</span>arista<span>&#46;</span>com</a> for help.</p>
+</div>
+<div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p>Copyright© 2020, Arista Networks, Inc. All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+<ul class="simple">
+<li>Redistributions of source code must retain the above copyright notice,
+this list of conditions and the following disclaimer.</li>
+</ul>
+<ul class="simple">
+<li>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</li>
+</ul>
+<ul class="simple">
+<li>Neither the name of Arista Networks nor the names of its contributors
+may be used to endorse or promote products derived from this software
+without specific prior written permission.</li>
+</ul>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS
+IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ARISTA NETWORKS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+THE POSSIBILITY OF SUCH DAMAGE.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="cvprac" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to cvprac documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Copyright 2020, Arista Netowrks, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
