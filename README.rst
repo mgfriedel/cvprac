@@ -1,7 +1,6 @@
 Arista Cloudvision\ |reg| Portal RESTful API Client
 ===================================================
 |pypi_version_badge|
-|System_test_Status|
 
 Table of Contents
 =================
